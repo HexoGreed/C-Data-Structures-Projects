@@ -63,7 +63,7 @@ public:
 
   void Print();
   //Complete this...
-
+  void ShiftRight();
 private:
   NodeType* listData;
   int length;
