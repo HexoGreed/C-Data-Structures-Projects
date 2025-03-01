@@ -95,31 +95,40 @@ ItemType UnsortedType::GetItem(ItemType& item, bool& found)
 }
 
  void UnsortedType::DeleteItem(ItemType item)
-// Pre:  item's key has been initialized.
-//       An element in the list has a key that matches item's.
-// Post: No element in the list has a key that matches item's.
 {
-  NodeType* location = listData;
-  NodeType* tempLocation;
+    NodeType* location = listData;
+    NodeType* tempLocation;
+    NodeType* prevLocation = NULL;
 
-  // Locate node to be deleted.
-  if (item.ComparedTo(listData->info) == EQUAL)
-  {
-    tempLocation = location;
-    listData = listData->next;		// Delete first node.
-  }
-  else
-  {
-    while (item.ComparedTo((location->next)->info) != EQUAL)
-      location = location->next;
-
-    // Delete node at location->next
-    tempLocation = location->next;
-    location->next = (location->next)->next;
-  }
-  delete tempLocation;
-  length--;
+    while (location != NULL)
+    {
+        if (item.ComparedTo(location->info) == EQUAL)
+        {
+            if (prevLocation == NULL)
+            {
+                // Delete the first node
+                tempLocation = location;
+                listData = listData->next;
+                location = listData;
+            }
+            else
+            {
+                // Delete node at location
+                tempLocation = location;
+                prevLocation->next = location->next;
+                location = location->next;
+            }
+            delete tempLocation;
+            length--;
+        }
+        else
+        {
+            prevLocation = location;
+            location = location->next;
+        }
+    }
 }
+
 
 void UnsortedType::ResetList()
 // Post: Current position has been initialized.
