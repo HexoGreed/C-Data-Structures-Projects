@@ -169,4 +169,30 @@ void UnsortedType::Print(){
 
 
 
+void UnsortedType::ShiftRight()
+{
+    if (length <= 1)
+    {
+        // No need to shift if the list is empty or has only one element
+        return;
+    }
+
+    NodeType* lastNode = listData;
+    NodeType* secondLastNode = NULL;
+
+    // Traverse to the last node
+    while (lastNode->next != NULL)
+    {
+        secondLastNode = lastNode;
+        lastNode = lastNode->next;
+    }
+
+    // Move the last node to the front
+    secondLastNode->next = NULL;
+    lastNode->next = listData;
+    listData = lastNode;
+}
+
+
+
 
