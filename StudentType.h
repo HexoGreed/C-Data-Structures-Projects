@@ -5,11 +5,14 @@ enum StudentStatus {NON_ATTENDING, ENROLLED, GRADUATED};   //notice the enumerat
 class StudentType : public PersonType
 {
 public: 
+	StudentType();
+	StudentType(int num);
   int GetStatus() const;
   void Initialize(string, DateType, int);
   RelationType ComparedTo(StudentType& someStudent);
   DateType BirthdateIs();
   void Print();
+  
 private:
   int status;
 };
