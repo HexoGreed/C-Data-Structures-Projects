@@ -34,3 +34,8 @@ void StudentType::Print(){
 	PersonType::Print();   //use the Print function of PersonType here.
 	cout <<"Status: " << status << endl;
 }
+
+
+StudentType::StudentType() : status(0) {} // Default constructor
+
+StudentType::StudentType(int value) : status(value) {} // Constructor that accepts an integer
