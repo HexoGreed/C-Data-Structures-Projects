@@ -94,7 +94,7 @@ ItemType UnsortedType::GetItem(ItemType& item, bool& found)
   return item;
 }
 
- void UnsortedType::DeleteItem(ItemType item)
+void UnsortedType::DeleteItem(ItemType item)
 {
     NodeType* location = listData;
     NodeType* tempLocation;
@@ -128,6 +128,7 @@ ItemType UnsortedType::GetItem(ItemType& item, bool& found)
         }
     }
 }
+
 
 
 void UnsortedType::ResetList()
