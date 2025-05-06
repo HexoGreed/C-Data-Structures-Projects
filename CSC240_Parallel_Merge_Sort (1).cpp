@@ -3,7 +3,7 @@
 //  Thread_Sort
 //
 //  Created by Charles Weems on 1/12/16.
-//  Copyright © 2016 Charles Weems. All rights reserved.
+//  Copyright Â© 2016 Charles Weems. All rights reserved.
 //
 
 #include <iostream>
@@ -86,20 +86,22 @@ void ParallelMergeSort(ItemType values[], int first, int last, ItemType tempArra
             int leftLast = middle;
             int rightFirst = middle + 1;
 
+
             int leftR = middle - first + 1;
             int rightR = last - middle;
+
 
             int leftThreads = std::min(numThreads / 2, leftR / chunkSize);
             int rightThreads = std::min(numThreads - leftThreads, rightR / chunkSize);
 
+
             std::thread left(ParallelMergeSort<ItemType>, values, first, leftLast, tempArray, chunkSize, leftThreads);
             std::thread right(ParallelMergeSort<ItemType>, values, rightFirst, last, tempArray, chunkSize, rightThreads);
 
+
             left.join();
             right.join();
-        }
-        else                                            // Otherwise finish sorting locally
-        {
+        }else {                                          // Otherwise finish sorting locally
             // Otherwise finish sorting locally
             SerialMergeSort<ItemType>(values, first, middle, tempArray);
             SerialMergeSort<ItemType>(values, middle + 1, last, tempArray);
